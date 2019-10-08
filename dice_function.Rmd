@@ -1,0 +1,26 @@
+---
+title: "Dice Function - Olly Gill"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+```
+
+```{r}
+dice <- function() {
+  sample(1:6, 1)
+}
+
+roll_dice <- function(n = 1) {
+  map_int(1:n, ~ dice() + dice())
+}
+
+x<- tibble(rolls = roll_dice(10000))
+
+ggplot(x, aes(x=rolls)) +
+  geom_histogram()
+```
+
